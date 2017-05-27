@@ -67,7 +67,7 @@ public class StockSystem {
                 case "d":
                     int beforeDelete = main.products.size();
                     main.Delete();
-                    if(beforeDelete == main.products.size());
+                    if (beforeDelete == main.products.size()) ;
                     System.out.println("Product Not Found");
                     break;
 
@@ -100,15 +100,13 @@ public class StockSystem {
                 case "G":
                     System.out.println("Pages: ");
                     int p = scanner.nextInt();
-                    if(p > main.totalPages || p < 0){
+                    if (p > main.totalPages || p < 0) {
                         System.out.println("Page Not Found");
-                    }else{
+                    } else {
                         main.pageNumber = p;
                         main.Goto(p);
                     }
-
                     break;
-
 
                 case "F":
                 case "f":
@@ -119,6 +117,9 @@ public class StockSystem {
                 case "l":
                     main.Last(main.totalPages);
                     break;
+//                case "H":
+//                case "h": main.Help();
+//                break;
             }
         } while (true);
     }
@@ -181,25 +182,62 @@ public class StockSystem {
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             if (ID == product.getId()) {
-                System.out.println("Name: ");
-                String name = scanner.next();
-                product.setName(name);
-                System.out.println("Unit Price: ");
-                double up = scanner.nextDouble();
-                product.setUnitPrice(up);
-                System.out.println("Stock Quantity: ");
-                int sq = scanner.nextInt();
-                product.setStockQuantity(sq);
-                System.out.println("Date");
-                String Date = scanner.next();
-                Date date;
-                try {
-                    date = df.parse(Date);
-                    product.setImportedDate(date);
+                System.out.println("What do you want to update?");
+                System.out.println("A(All) \t N(Name) \t P(Price) \t Q(Quantity in Stock) \t  D(ImportDate");
+                String choice = scanner.next();
+                switch (choice) {
+                    case "a":
+                    case "A":
+                        System.out.println("Name: ");
+                        String name = scanner.next();
+                        product.setName(name);
+                        System.out.println("Unit Price: ");
+                        double up = scanner.nextDouble();
+                        product.setUnitPrice(up);
+                        System.out.println("Stock Quantity: ");
+                        int sq = scanner.nextInt();
+                        product.setStockQuantity(sq);
+                        System.out.println("Date");
+                        String Date = scanner.next();
+                        Date date;
+                        try {
+                            date = df.parse(Date);
+                            product.setImportedDate(date);
 
-                } catch (Exception e) {
-                    System.out.println(e.toString());
+                        } catch (Exception e) {
+                            System.out.println(e.toString());
+                        }
+                        break;
+                    case "n":
+                    case "N":
+                        System.out.print("Name: ");
+                        product.setName(scanner.next());
+                        break;
+                    case "p":
+                    case "P":
+                        System.out.print("Price: ");
+                        product.setUnitPrice(scanner.nextDouble());
+                        break;
+                    case "q":
+                    case "Q":
+                        System.out.print("Stock Quantity: ");
+                        product.setStockQuantity(scanner.nextInt());
+                        break;
+                    case "d":
+                    case "D":
+                        System.out.println("Date");
+                        String D = scanner.next();
+                        Date d;
+                        try {
+                            d = df.parse(D);
+                            product.setImportedDate(d);
+
+                        } catch (Exception e) {
+                            System.out.println(e.toString());
+                        }
+                        break;
                 }
+
             }
         }
     }
@@ -364,4 +402,25 @@ public class StockSystem {
         table.addCell("Total Record: " + products.size(), allignCenter, 4);
         System.out.println(table.render());
     }
+
+//    void Help(){
+//        CellStyle cellStyle = new CellStyle(CellStyle.HorizontalAlign.center);
+//        Table table = new Table(1, BorderStyle.DESIGN_TUBES_WIDE, ShownBorders.SURROUND);
+//        table.setColumnWidth(0,90,100);
+//        table.addCell(" ");
+//        table.addCell("\tHelps ");
+//        table.addCell("\t1-Write:");
+//        table.addCell("\t  -Press w or W then enter to write normally");
+//        table.addCell("\t2-Read:");
+//        table.addCell("\t  -Press w or W then enter to write normally");
+//        table.addCell("\t1-Write:");
+//        table.addCell("\t  -Press w or W then enter to write normally");
+//        table.addCell("\t1-Write:");
+//        table.addCell("\t  -Press w or W then enter to write normally");
+//        table.addCell("\t1-Write:");
+//        table.addCell("\t  -Press w or W then enter to write normally");
+//        System.out.println(table.render());
+//        System.out.println();
+//    }
+
 }
