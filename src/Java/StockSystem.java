@@ -67,8 +67,8 @@ public class StockSystem {
                 case "d":
                     int beforeDelete = main.products.size();
                     main.Delete();
-                    if (beforeDelete == main.products.size()) ;
-                    System.out.println("Product Not Found");
+                    if (beforeDelete == main.products.size())
+                        System.out.println("Product Not Found");
                     break;
 
                 case "r":
@@ -120,6 +120,8 @@ public class StockSystem {
 //                case "H":
 //                case "h": main.Help();
 //                break;
+                case "E":
+                case "e": System.exit(0);
             }
         } while (true);
     }
